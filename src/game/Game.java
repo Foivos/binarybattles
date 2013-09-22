@@ -1,11 +1,23 @@
 package game;
 
-import java.util.Collection;
+import java.io.IOException;
+import java.util.List;
 
-import referee.BaseReferee;
+import referee.Referee;
 import rules.Player;
 
 public class Game {
-	BaseReferee referee;
-	Collection<Player> players;
+	protected Referee referee;
+	protected List<Player> players;
+	
+	public Game(Referee referee, List<Player> players) {
+		this.referee = referee;
+		this.players = players;
+	}
+	
+	public int play() throws IOException {
+		int winner;
+		while((winner = referee.turn()) == -1) ;//System.in.read();
+		return winner;
+	}
 }
